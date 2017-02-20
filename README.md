@@ -1,7 +1,11 @@
-# gatsby-starter-default
-The default Gatsby starter
+# Wanderland Travelers
+Wanderland Travelers web site
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
+To run locally:
 ```
-gatsby new gatsby-example-site
+npm install -g gatsby
+npm install
+gatsby develop
 ```
+
+Then you can open the site at http://localhost:8000

@@ -14,9 +14,9 @@ ResponsiveImageListPlugin.prototype.apply = function (compiler) {
     var listFileLines = ['export default [']
     var widths = ['2048', '1920', '1600', '1440', '1366', '1280', '1024', '960', '667', '640', '568', '320']
     var sizes = widths.map(width => `sizes[]=${width}w`).join(',')
-    fs.readdir(options.imageDir, function (err, items) {
+    fs.readdir(`./src/${options.imageDir}`, function (err, items) {
       items.forEach(function (item) {
-        var imagePath = `.${options.imageDir}/${item}`
+        var imagePath = `../${options.imageDir}/${item}`
         listFileLines.push(`\trequire('responsive?${sizes}!${imagePath}'),`)
       })
       listFileLines.push(']')

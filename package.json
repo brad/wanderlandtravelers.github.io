@@ -5,9 +5,20 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "front-matter": "^2.0.7",
-    "gatsby": "^0.12.6",
+    "gatsby": "^1.9.127",
+    "gatsby-link": "^1.6.30",
+    "gatsby-plugin-less": "^1.0.7",
+    "gatsby-plugin-sharp": "^1.0.0-beta.7",
+    "gatsby-remark-copy-linked-files": "^1.0.0-beta.6",
+    "gatsby-remark-images": "^1.0.0-beta.6",
+    "gatsby-remark-prismjs": "^1.0.0-beta.6",
+    "gatsby-remark-responsive-iframe": "^1.0.0-beta.6",
+    "gatsby-remark-smartypants": "^1.0.0-beta.6",
+    "gatsby-source-filesystem": "^2.0.0-alpha.1",
+    "gatsby-transformer-remark": "^1.0.0-beta.6",
     "highlight.js": "^9.6.0",
     "history": "^2.0.2",
+    "image-webpack-loader": "^3.4.2",
     "js-yaml": "^3.6.0",
     "markdown-it": "^7.0.1",
     "markdown-it-abbr": "^1.0.3",
@@ -21,6 +32,7 @@
     "react-responsive-grid": "^0.3.3",
     "react-slick": "^0.14.5",
     "react-typography": "^0.12.0",
+    "react-youtube": "^7.3.0",
     "slick-carousel": "^1.6.0",
     "toml-js": "0.0.8",
     "typography": "^0.13.0",
@@ -47,7 +59,7 @@
   "scripts": {
     "build": "gatsby build",
     "deploy": "gatsby build --prefix-links && gh-pages -d public -b master",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -p 8002",
     "lint": "eslint --ext .js,.jsx --ignore-path .gitignore .",
     "test": "echo \"Error: no test specified\" && exit 1"
   }

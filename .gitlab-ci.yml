@@ -1,10 +1,10 @@
-image: node:4.6.0
+image: node:6
 
 pages:
   script:
-  - npm install -sg gatsby
+  - npm install -sg "gatsby-cli@1.1.25"
   - npm install -q
-  - gatsby build --prefix-links
+  - gatsby build --verbose --prefix-links
   artifacts:
     paths:
     - public
