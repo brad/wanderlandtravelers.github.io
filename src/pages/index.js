@@ -9,11 +9,8 @@ import '../fonts/Pacifico.woff2'
 
 
 export default class Index extends React.Component {
-  getContent () {
+  render () {
     let classes = 'wt-center wt-index wt-box'
-    if (this.props.hide) {
-      classes += ' hidden'
-    }
     const socialUrls = [
       'https://www.instagram.com/wanderlandtravelers/',
       'https://www.youtube.com/channel/UCOMc1_p6kN13sgXYOtcxn-A',
@@ -38,30 +35,4 @@ export default class Index extends React.Component {
       </article>
     )
   }
-
-  render () {
-    return (
-      <div id="wt-content">
-        <Helmet
-          title={this.props.data.site.siteMetadata.title}
-          meta={[
-            {"name": "description", "content": "A couple travelling, working, and filming it all as they go"},
-            {"name": "keywords", "content": "travel, travelling, travelers, motorhome, nomad, nomads, digital nomads"},
-          ]}
-        />
-        {this.getContent()}
-      </div>
-    )
-  }
 }
-
-
-export const pageQuery = graphql`
-  query SiteMetadataLookup {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

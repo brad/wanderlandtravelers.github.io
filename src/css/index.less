@@ -6,16 +6,25 @@ html {
   display: block;
 }
 
-html, body, #react-mount, #wt-outer-container, #wt-content {
+html, body, #react-mount, #wt-outer-container, #wt-content, #___gatsby {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
 #wt-content {
+  animation: 1s ease 0s normal forwards 1 fadein;
+  -webkit-animation: 1s ease 0s normal forwards 1 fadein;
+  -moz-animation: 1s ease 0s normal forwards 1 fadein;
+  -o-animation: 1s ease 0s normal forwards 1 fadein;
+  opacity: 0;
   display: flex;
   flex-flow: column;
   align-items: center;
+
+  &.hidden {
+    visibility: hidden;
+  }
 
   article {
     flex: 1;
@@ -23,10 +32,6 @@ html, body, #react-mount, #wt-outer-container, #wt-content {
     flex-flow: column;
     align-items: center;
     width: 60%;
-
-    &.hidden {
-      visibility: hidden;
-    }
   }
 }
 
@@ -167,7 +172,7 @@ header#wanderland-travelers {
 }
 
 
-#background-images:not(.fullscreen) + #wt-content article:not(.hidden) {
+#background-images.loaded:not(.fullscreen) + #wt-content:not(.hidden) {
   header svg path {
     animation: drawfill 7s linear forwards;
     -webkit-animation: drawfill 7s linear forwards;
@@ -183,6 +188,26 @@ header#wanderland-travelers {
   }
 }
 
+
+@keyframes fadein{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@-webkit-keyframes fadein{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@-moz-keyframes fadein{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@-o-keyframes fadein{
+  from{opacity:0}
+  to{opacity:1}
+}
 
 @keyframes drawfill {
   0% { fill-opacity: 0; stroke-opacity: 1; }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container } from 'react-responsive-grid'
 import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
 import Headroom from 'react-headroom'
 import BackgroundImages from '../components/background-images.js'
 
@@ -10,19 +11,12 @@ module.exports = React.createClass({
   getInitialState () {
     return {
       hide: false,
-      loaded: true
     }
   },
 
   handleHideContent () {
     this.setState({
       hide: !this.state.hide
-    })
-  },
-
-  onLoad () {
-    this.setState({
-      loaded: true
     })
   },
 
@@ -36,20 +30,21 @@ module.exports = React.createClass({
 
   propTypes () {
     return {
-      children: React.PropTypes.any,
+      children: PropTypes.func,
     }
   },
 
   childrenWithProps () {
-    return React.Children.map(this.props.children,
-     (child) => React.cloneElement(child, {
-       hide: this.state.hide,
-       onLoaded: this.onLoaded
-     })
+    return React.Children.map(
+      this.props.children(),
+      child => React.cloneElement(child, {
+        hide: this.state.hide,
+      })
     )
   },
 
   render () {
+    const className = this.state.hide ? 'hidden' : '';
     return (
       <div id="wt-outer-container" style={{opacity: 0}}>
         <BackgroundImages
@@ -57,7 +52,9 @@ module.exports = React.createClass({
           goFullscreen={this.goFullscreen}
           hide={this.state.hide}
         />
-        {this.childrenWithProps()}
+        <div id="wt-content" className={className}>
+          {this.childrenWithProps()}
+        </div>
       </div>
     )
   },

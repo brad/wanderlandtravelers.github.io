@@ -14,23 +14,30 @@ export default class BackgroundImages extends React.Component {
 
     this.updateDimensions = this.updateDimensions.bind(this)
     this.updatedDimensions = this.updatedDimensions.bind(this)
+    this.className = this.className.bind(this)
     this.fullscreenClass = this.fullscreenClass.bind(this)
     this.fullscreenBUtton = this.fullscreenButton.bind(this)
     this.hideBUtton = this.hideButton.bind(this)
   }
 
   componentDidMount () {
-    window.addEventListener('resize', this.updateDimensions)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', this.updateDimensions);
+    }
+    this.setState({loaded: true});
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize', this.updateDimensions)
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.updateDimensions);
+    }
   }
 
   updatedDimensions () {
     return {
-      width: typeof(window) === 'undefined' ? null : window.innerWidth,
-      height: typeof(window) === 'undefined' ? null : window.innerHeight
+      loaded: false,
+      width: typeof window === 'undefined' ? null : window.innerWidth,
+      height: typeof window === 'undefined' ? null : window.innerHeight,
     }
   }
 
@@ -69,6 +76,10 @@ export default class BackgroundImages extends React.Component {
     return
   }
 
+  className () {
+    return this.fullscreenClass() + (this.state.loaded ? ' loaded' : '')
+  }
+
   fullscreenClass () {
     return this.isFullScreen() ? 'fullscreen' : ''
   }
@@ -89,7 +100,7 @@ export default class BackgroundImages extends React.Component {
       autoplaySpeed: 25000,
     }
     return (
-      <div id="background-images" className={this.fullscreenClass()}>
+      <div id="background-images" className={this.className()}>
         <Slider {...settings}>
           {responsiveImages.map((image, i) => (
             <div key={i} className="responsive-background-image">
